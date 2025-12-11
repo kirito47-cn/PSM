@@ -1,11 +1,9 @@
 import type { PSMCurves, PSMPercent, PSMResponse } from "./interface";
-import { convertCSV2JSON } from "./util";
 
 // TODO:  support input the file name in terminal
 // convertCSV2JSON("PSMrawdata.csv").then(res => {
 //     psmAnalysis(res)
 // })
-
 
 export function psmAnalysis(responses: PSMResponse[]): PSMCurves {
     const len = responses.length
@@ -61,6 +59,7 @@ function pctTooExpensive(p: number, responses: PSMResponse[]) {
 }
 
 // func to find the intersection
+// by using AI
 function findInterSection(curA: PSMPercent[], curB: PSMPercent[]) {
 
     for (let index = 0; index < curA.length - 1; index++) {
