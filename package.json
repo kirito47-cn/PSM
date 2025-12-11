@@ -1,0 +1,17 @@
+{
+  "name": "code",
+  "module": "main.ts",
+  "type": "module",
+  "private": true,
+  "peerDependencies": {
+    "typescript": "^5"
+  },
+  "scripts": { 
+    "start-server": "bun --watch run server.ts"
+  }, 
+  "dependencies": {
+    "csv-parse": "^6.1.0"
+  },
+  "devDependencies": {
+  }
+}

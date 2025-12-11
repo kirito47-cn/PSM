@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PSM</title>
+</head>
+<body>
+    <div>
+        <canvas id="myChart"></canvas>
+    </div>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    async function fetchPSMData() {
+        const response = await fetch('/api/psm');
+        const result = await response.json();
+        return result.data;
+    }
+
+    function plotPSMCurves(data) {
+        const ctx = document.getElementById('myChart').getContext('2d');
+        const chart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: data.curveTooCheap.map(point => point.p),
+                datasets: [
+                    {
+                        label: '安すぎて買わない',
+                        data: data.curveTooCheap.map(point => point.v),
+                        borderColor: 'red',
+                        fill: false,
+                    },
+                    {
+                        label: '安いと思う',
+                        data: data.curveCheap.map(point => point.v),
+                        borderColor: 'orange',
+                        fill: false,
+                    },
+                    {
+                        label: '高いと思う',
+                        data: data.curveExpensive.map(point => point.v),
+                        borderColor: 'blue',
+                        fill: false,
+                    },
+                    {
+                        label: '高すぎて買えない',
+                        data: data.curveTooExpensive.map(point => point.v),
+                        borderColor: 'purple',
+                        fill: false,
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    x: {
+                        title: {
+                            display: true,
+                            text: 'Price'
+                        }
+                    },
+                    y: {
+                        title: {
+                            display: true,
+                            text: 'Percentage (%)'
+                        }
+                    }
+                }
+            }
+        });
+    }
+
+    fetchPSMData().then(data => {
+        plotPSMCurves(data);
+    });
+</script>
+</html>
