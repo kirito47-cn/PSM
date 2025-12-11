@@ -12,5 +12,7 @@ To run:
 ```bash
 bun start-server
 ```
+open http://localhost:3000 in browser.
+it will start a server, and chart will be shown, the price will be shown on the terminal.
 
 This project was created using `bun init` in bun v1.3.4. [Bun](https://bun.com) is a fast all-in-one JavaScript runtime.

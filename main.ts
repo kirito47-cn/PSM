@@ -15,6 +15,7 @@ export function psmAnalysis(responses: PSMResponse[]): PSMCurves {
     const step = 40 // step is important.
 
     const prices = []
+    // start from minPrice to maxPrice with step, maybe can not reach the maxPrice. Not a big problem.
     for (let start = minPrice; start <= maxPrice; start+= step) {
         prices.push(start)
     }
